@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import HellComponent from './component/HelloComponent';
-import StateFullComponent from './container/StateFullComponent';
+import Home from './container/Home/Home';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <HellComponent />
-    <StateFullComponent />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root'),
 );

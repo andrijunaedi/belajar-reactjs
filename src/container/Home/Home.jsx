@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
-import Product from '../Product/Product';
+import LifeCycleComp from '../LifeCycleComp/LifeCycleComp';
 
 class Home extends PureComponent {
   render() {
     return (
       <div>
-        <p>Counter</p>
+        <p>Life Cycle Component</p>
         <hr />
-        <Product />
+        <LifeCycleComp />
       </div>
     );
   }

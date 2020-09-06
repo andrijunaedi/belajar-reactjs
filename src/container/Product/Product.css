@@ -1,0 +1,78 @@
+.header {
+  background: chartreuse;
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.trolley {
+  position: relative;
+}
+
+.trolley img {
+  width: 35px;
+}
+
+.count {
+  background: #2d3c8d;
+  padding: 10px;
+  border-radius: 20px;
+  min-width: 10px;
+  height: 10px;
+  line-height: 10px;
+  text-align: center;
+  color: white;
+  font-size: 11px;
+  position: absolute;
+  bottom: 1px;
+  left: -5px;
+}
+
+.card {
+  border: 3px solid rgba(0, 0, 0, 0.23);
+  padding: 10px;
+  width: 320px;
+  border-radius: 4px;
+  margin: 0 0 30px 30px;
+}
+
+.img-thumb-prod img {
+  width: 100%;
+}
+
+.product-title {
+  font-weight: 700;
+}
+
+.product-price {
+  font-weight: 600;
+  color: sandybrown;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order {
+  width: 65%;
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
+}
+
+.minus,
+.plus {
+  background: #2d3c8d;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  width: 10%;
+}

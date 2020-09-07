@@ -21,7 +21,7 @@ class LifeCycleComp extends Component {
       this.setState({
         count: 2,
       });
-    }, 3000);
+    }, 5000);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -36,6 +36,10 @@ class LifeCycleComp extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
   }
 
   render() {

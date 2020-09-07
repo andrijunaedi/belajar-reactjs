@@ -9,14 +9,6 @@ class Home extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        showComp: false,
-      });
-    }, 10000);
-  }
-
   render() {
     const { showComp } = this.state;
     return (

@@ -17,15 +17,16 @@ class LifeCycleComp extends Component {
 
   componentDidMount() {
     console.log('componentDidMount');
-    setTimeout(() => {
-      this.setState({
-        count: 2,
-      });
-    }, 5000);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate');
+    console.group('shouldComponentUpdate');
+    console.log('nextState :', nextState);
+    console.log('this State : ', this.state);
+    console.groupEnd();
+    if (nextState.count >= 4) {
+      return false;
+    }
     return true;
   }
 
@@ -42,10 +43,16 @@ class LifeCycleComp extends Component {
     console.log('componentWillUnmount');
   }
 
+  ChangeCount = () => {
+    this.setState((prevState) => ({
+      count: prevState.count + 1,
+    }));
+  };
+
   render() {
     const { count } = this.state;
     return (
-      <button type="submit" className="btn">
+      <button type="submit" onClick={this.ChangeCount} className="btn">
         Component Button
         {count}
       </button>

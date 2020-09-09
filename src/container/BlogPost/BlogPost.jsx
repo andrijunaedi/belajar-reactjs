@@ -12,18 +12,7 @@ class BlogPost extends Component {
   }
 
   componentDidMount() {
-    // Fetch
-
-    // fetch('https://jsonplaceholder.typicode.com/posts')
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     this.setState({
-    //       posts: json,
-    //     });
-    //   });
-
-    // axios
-    axios.get('https://jsonplaceholder.typicode.com/posts').then((result) => {
+    axios.get('http://localhost:5000/posts').then((result) => {
       this.setState({
         posts: result.data,
       });

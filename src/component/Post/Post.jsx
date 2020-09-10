@@ -8,6 +8,13 @@ const Post = (_props) => (
     <div className="content">
       <p className="title">{_props.title}</p>
       <p className="desc">{_props.desc}</p>
+      <button
+        type="submit"
+        className="btn"
+        onClick={() => _props.remove(_props.id)}
+      >
+        Remove
+      </button>
     </div>
   </div>
 );

@@ -10,6 +10,13 @@ const Post = (_props) => (
       <p className="desc">{_props.desc}</p>
       <button
         type="submit"
+        className="btn-update"
+        onClick={() => _props.update(_props.data)}
+      >
+        Update
+      </button>
+      <button
+        type="submit"
         className="btn"
         onClick={() => _props.remove(_props.id)}
       >

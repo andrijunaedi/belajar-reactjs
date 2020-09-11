@@ -14,6 +14,7 @@ class BlogPost extends Component {
         title: '',
         body: '',
       },
+      isUpdate: false,
     };
   }
 
@@ -31,34 +32,67 @@ class BlogPost extends Component {
       });
   };
 
-  handleRemove = (id) => {
-    axios
-      .delete(`http://localhost:5000/posts/${id}`)
-      .then(() => this.getPostAPI());
-  };
-
   handleFormChange = (event) => {
-    const { formBlogPost } = this.state;
+    const { formBlogPost, isUpdate } = this.state;
     const formBlogPostNew = { ...formBlogPost };
     const timestamp = new Date().getTime();
-    formBlogPostNew.id = timestamp;
-    formBlogPostNew[event.target.name] = event.target.value;
 
+    if (!isUpdate) {
+      formBlogPostNew.id = timestamp;
+    }
+    formBlogPostNew[event.target.name] = event.target.value;
     this.setState({
       formBlogPost: formBlogPostNew,
     });
   };
 
   handleSave = () => {
-    const { formBlogPost } = this.state;
+    const { formBlogPost, isUpdate } = this.state;
+    if (isUpdate) {
+      axios
+        .put(`http://localhost:5000/posts/${formBlogPost.id}`, formBlogPost)
+        .then(() => {
+          this.getPostAPI();
+          this.setState({
+            isUpdate: false,
+            formBlogPost: {
+              userId: 1,
+              id: 1,
+              title: '',
+              body: '',
+            },
+          });
+        });
+    } else {
+      axios.post('http://localhost:5000/posts', formBlogPost).then(() => {
+        this.getPostAPI();
+        this.setState({
+          formBlogPost: {
+            userId: 1,
+            id: 1,
+            title: '',
+            body: '',
+          },
+        });
+      });
+    }
+  };
+
+  handleUpdate = (data) => {
+    this.setState({
+      formBlogPost: data,
+      isUpdate: true,
+    });
+  };
+
+  handleRemove = (id) => {
     axios
-      .post('http://localhost:5000/posts', formBlogPost)
-      .then(() => this.getPostAPI())
-      .catch((error) => console.log(error));
+      .delete(`http://localhost:5000/posts/${id}`)
+      .then(() => this.getPostAPI());
   };
 
   render() {
-    const { posts } = this.state;
+    const { posts, formBlogPost } = this.state;
     return (
       <>
         <p className="section-title">Blog Post</p>
@@ -69,6 +103,7 @@ class BlogPost extends Component {
               type="text"
               name="title"
               placeholder="Add title"
+              value={formBlogPost.title}
               onChange={this.handleFormChange}
             />
           </label>
@@ -80,6 +115,7 @@ class BlogPost extends Component {
               cols="30"
               rows="10"
               placeholder="Add blog content"
+              value={formBlogPost.body}
               onChange={this.handleFormChange}
             />
           </label>
@@ -93,6 +129,8 @@ class BlogPost extends Component {
             id={post.id}
             title={post.title}
             desc={post.body}
+            data={post}
+            update={this.handleUpdate}
             remove={this.handleRemove}
           />
         ))}

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import './Product.css';
-import CardProduct from '../CardProduct/CardProduct';
+import CardProduct from './CardProduct/CardProduct';
 
 class Product extends PureComponent {
   constructor(props) {

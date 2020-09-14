@@ -20,6 +20,8 @@ class Product extends PureComponent {
     const { order } = this.state;
     return (
       <>
+        <p>Page Product</p>
+        <hr />
         <div className="header">
           <div className="logo">
             <img

@@ -95,7 +95,8 @@ class BlogPost extends Component {
     const { posts, formBlogPost } = this.state;
     return (
       <>
-        <p className="section-title">Blog Post</p>
+        <p className="section-title">Page Blog Post</p>
+        <hr />
         <div className="form-add-post">
           <label htmlFor="title">
             <p>Title</p>

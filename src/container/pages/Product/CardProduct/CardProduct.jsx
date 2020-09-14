@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import '../Product/Product.css';
+import '../Product.css';
 
 class CardProduct extends PureComponent {
   constructor(props) {

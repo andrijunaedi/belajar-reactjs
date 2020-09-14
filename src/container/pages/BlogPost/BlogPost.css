@@ -16,14 +16,18 @@
   margin-left: 20px;
 }
 
-.img-thumb {
-  width: 200px;
+.post .img-thumb {
+  flex-basis: 40%;
   height: 150px;
   margin-right: 20px;
 }
 
-.img-thumb img {
-  flex: 1;
+.post .img-thumb img {
+  width: 200px;
+}
+
+.content {
+  flex-basis: 60%;
 }
 
 .content p.title {
@@ -40,25 +44,22 @@
   color: #4a4a4a;
 }
 
-.btn {
+.btn-detail {
   outline: none;
-  border: 1px solid red;
+  font-size: 11px;
+  border: 1px solid darkgreen;
   padding: 10px 20px;
   border-radius: 4px;
-  color: red;
+  color: darkgreen;
   text-transform: uppercase;
   font-weight: bold;
   margin-top: 30px;
-  margin-left: 20px;
-}
-
-.btn:hover,
-.btn-update:hover {
-  cursor: pointer;
+  margin-right: 10px;
 }
 
 .btn-update {
   outline: none;
+  font-size: 11px;
   border: 1px solid darkorange;
   padding: 10px 20px;
   border-radius: 4px;
@@ -66,6 +67,25 @@
   text-transform: uppercase;
   font-weight: bold;
   margin-top: 30px;
+  margin-right: 10px;
+}
+
+.btn-remove {
+  outline: none;
+  font-size: 11px;
+  border: 1px solid red;
+  padding: 10px 20px;
+  border-radius: 4px;
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.btn-detail:hover,
+.btn-update:hover,
+.btn-remove:hover {
+  cursor: pointer;
 }
 
 .form-add-post {
@@ -98,7 +118,7 @@
   color: #607d88;
 }
 
-button.btn-save {
+.btn-save {
   outline: none;
   border: 1px solid #2196f3;
   padding: 10px 30px;

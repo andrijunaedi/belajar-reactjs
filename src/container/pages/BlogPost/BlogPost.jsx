@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './BlogPost.css';
-import Post from '../../component/Post/Post';
+import Post from '../../../component/Post/Post';
 
 class BlogPost extends Component {
   constructor(props) {
@@ -91,11 +92,16 @@ class BlogPost extends Component {
       .then(() => this.getPostAPI());
   };
 
+  handleDetail = (id) => {
+    this.props.history.push(`/detail/${id}`);
+  };
+
   render() {
     const { posts, formBlogPost } = this.state;
     return (
       <>
-        <p className="section-title">Blog Post</p>
+        <p className="section-title">Page Blog Post</p>
+        <hr />
         <div className="form-add-post">
           <label htmlFor="title">
             <p>Title</p>
@@ -132,6 +138,7 @@ class BlogPost extends Component {
             data={post}
             update={this.handleUpdate}
             remove={this.handleRemove}
+            goDetail={this.handleDetail}
           />
         ))}
       </>
@@ -139,4 +146,4 @@ class BlogPost extends Component {
   }
 }
 
-export default BlogPost;
+export default withRouter(BlogPost);

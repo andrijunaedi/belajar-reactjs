@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import './Product.css';
-import CardProduct from '../CardProduct/CardProduct';
+import CardProduct from './CardProduct/CardProduct';
 
 class Product extends PureComponent {
   constructor(props) {
@@ -20,6 +20,8 @@ class Product extends PureComponent {
     const { order } = this.state;
     return (
       <>
+        <p>Page Product</p>
+        <hr />
         <div className="header">
           <div className="logo">
             <img

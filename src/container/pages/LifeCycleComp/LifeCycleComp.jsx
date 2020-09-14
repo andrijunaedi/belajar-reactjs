@@ -52,10 +52,14 @@ class LifeCycleComp extends Component {
   render() {
     const { count } = this.state;
     return (
-      <button type="submit" onClick={this.ChangeCount} className="btn">
-        Component Button
-        {count}
-      </button>
+      <>
+        <p>Page LifeCycle</p>
+        <hr />
+        <button type="submit" onClick={this.ChangeCount} className="btn">
+          Component Button
+          {count}
+        </button>
+      </>
     );
   }
 }

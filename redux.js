@@ -8,12 +8,33 @@ const initialState = {
 };
 
 // Reducer
-const rootReducer = (state = initialState) => state;
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'ADD_AGE':
+      return {
+        ...state,
+        age: state.age + 1,
+      };
+    case 'CHANGE_VALUE':
+      return {
+        ...state,
+        value: state.value + action.newValue,
+      };
+    default:
+      return state;
+  }
+};
 
 // Store
 const store = createStore(rootReducer);
 console.log(store.getState());
 
-// Dispatching Action
+// Subscription
+store.subscribe(() => {
+  console.log('store cahnge :', store.getState());
+});
 
-// Subcription
+// Dispatching Action
+store.dispatch({ type: 'ADD_AGE' });
+store.dispatch({ type: 'CHANGE_VALUE', newValue: 12 });
+console.log(store.getState());

@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import Counter from './Counter';
 import '../Product.css';
 
-class CardProduct extends PureComponent {
+class CardProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,34 +15,7 @@ class CardProduct extends PureComponent {
     onCounterChange(order);
   };
 
-  handlePlus = () => {
-    const { order } = this.state;
-    this.setState(
-      {
-        order: order + 1,
-      },
-      () => {
-        this.handleCounterChange(order + 1);
-      },
-    );
-  };
-
-  handleMinus = () => {
-    const { order } = this.state;
-    if (order > 0) {
-      this.setState(
-        {
-          order: order - 1,
-        },
-        () => {
-          this.handleCounterChange(order - 1);
-        },
-      );
-    }
-  };
-
   render() {
-    const { order } = this.state;
     return (
       <div className="card">
         <div className="img-thumb-prod">
@@ -52,15 +26,7 @@ class CardProduct extends PureComponent {
         </div>
         <p className="product-title"> Mie Ayam </p>
         <p className="product-price"> Rp. 10.000 </p>
-        <div className="counter">
-          <button type="submit" className="minus" onClick={this.handleMinus}>
-            -
-          </button>
-          <input className="order" type="text" readOnly value={order} />
-          <button type="submit" className="plus" onClick={this.handlePlus}>
-            +
-          </button>
-        </div>
+        <Counter onCounterChange={(value) => this.handleCounterChange(value)} />
       </div>
     );
   }

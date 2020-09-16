@@ -1,48 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-class Counter extends Component {
-  handleCounterChange = (order) => {
-    const { onCounterChange } = this.props;
-    onCounterChange(order);
-  };
-
-  handlePlus = () => {
-    const { order } = this.state;
-    this.setState(
-      {
-        order: order + 1,
-      },
-      () => {
-        this.handleCounterChange(order + 1);
-      },
-    );
-  };
-
-  handleMinus = () => {
-    const { order } = this.state;
-    if (order > 0) {
-      this.setState(
-        {
-          order: order - 1,
-        },
-        () => {
-          this.handleCounterChange(order - 1);
-        },
-      );
-    }
-  };
-
+class Counter extends PureComponent {
   render() {
-    const { order } = this.props;
-    console.log(this.props);
+    const { order, handleMinus, handlePlus } = this.props;
     return (
       <div className="counter">
-        <button type="submit" className="minus" onClick={this.handleMinus}>
+        <button type="submit" className="minus" onClick={handleMinus}>
           -
         </button>
         <input className="order" type="text" readOnly value={order} />
-        <button type="submit" className="plus" onClick={this.handlePlus}>
+        <button type="submit" className="plus" onClick={handlePlus}>
           +
         </button>
       </div>
@@ -54,4 +22,9 @@ const mapStateToProps = (state) => ({
   order: state.totalOrder,
 });
 
-export default connect(mapStateToProps)(Counter);
+const mapDispacthToProps = (dispatch) => ({
+  handlePlus: () => dispatch({ type: 'PLUS_ORDER' }),
+  handleMinus: () => dispatch({ type: 'MINUS_ORDER' }),
+});
+
+export default connect(mapStateToProps, mapDispacthToProps)(Counter);

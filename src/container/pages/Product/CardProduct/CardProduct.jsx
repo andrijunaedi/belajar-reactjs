@@ -1,20 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Counter from './Counter';
 import '../Product.css';
 
-class CardProduct extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      order: 0,
-    };
-  }
-
-  handleCounterChange = (order) => {
-    const { onCounterChange } = this.props;
-    onCounterChange(order);
-  };
-
+class CardProduct extends PureComponent {
   render() {
     return (
       <div className="card">
@@ -26,7 +14,7 @@ class CardProduct extends Component {
         </div>
         <p className="product-title"> Mie Ayam </p>
         <p className="product-price"> Rp. 10.000 </p>
-        <Counter onCounterChange={(value) => this.handleCounterChange(value)} />
+        <Counter />
       </div>
     );
   }

@@ -1,23 +1,11 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import './Product.css';
 import CardProduct from './CardProduct/CardProduct';
 
 class Product extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      order: 0,
-    };
-  }
-
-  handleCounterChange = (newValue) => {
-    this.setState({
-      order: newValue,
-    });
-  };
-
   render() {
-    const { order } = this.state;
+    const { order } = this.props;
     return (
       <>
         <p>Page Product</p>
@@ -37,12 +25,14 @@ class Product extends PureComponent {
             <div className="count">{order}</div>
           </div>
         </div>
-        <CardProduct
-          onCounterChange={(value) => this.handleCounterChange(value)}
-        />
+        <CardProduct />
       </>
     );
   }
 }
 
-export default Product;
+const mapStateToProps = (state) => ({
+  order: state.totalOrder,
+});
+
+export default connect(mapStateToProps)(Product);

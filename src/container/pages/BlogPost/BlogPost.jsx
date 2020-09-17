@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './BlogPost.css';
 import Post from '../../../component/Post/Post';
+import API from '../../../services';
 
 class BlogPost extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class BlogPost extends Component {
         body: '',
       },
       isUpdate: false,
+      comments: [],
     };
   }
 
@@ -24,13 +26,16 @@ class BlogPost extends Component {
   }
 
   getPostAPI = () => {
-    axios
-      .get('http://localhost:5000/posts?_sort=id&_order=desc')
-      .then((result) => {
-        this.setState({
-          posts: result.data,
-        });
+    API.getNewsBlog().then((result) => {
+      this.setState({
+        posts: result,
       });
+    });
+    API.getComments().then((result) => {
+      this.setState({
+        comments: result,
+      });
+    });
   };
 
   handleFormChange = (event) => {
@@ -97,7 +102,7 @@ class BlogPost extends Component {
   };
 
   render() {
-    const { posts, formBlogPost } = this.state;
+    const { posts, formBlogPost, comments } = this.state;
     return (
       <>
         <p className="section-title">Page Blog Post</p>
@@ -129,6 +134,11 @@ class BlogPost extends Component {
             Save
           </button>
         </div>
+        {comments.map((comment) => (
+          <p>
+            {comment.name} - {comment.email}
+          </p>
+        ))}
         {posts.map((post) => (
           <Post
             key={post.id}

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import axios from 'axios';
 import './DetailPost.css';
+import API from '../../../../services';
 
 class DetailPost extends PureComponent {
   constructor(props) {
@@ -15,8 +15,7 @@ class DetailPost extends PureComponent {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    axios.get(`http://localhost:5000/posts/${id}`).then((res) => {
-      const { data } = res;
+    API.getNewsBlogById(id).then((data) => {
       this.setState({
         post: {
           title: data.title,

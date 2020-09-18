@@ -17,7 +17,6 @@ class BlogPost extends Component {
         body: '',
       },
       isUpdate: false,
-      comments: [],
     };
   }
 
@@ -29,11 +28,6 @@ class BlogPost extends Component {
     API.getNewsBlog().then((result) => {
       this.setState({
         posts: result,
-      });
-    });
-    API.getComments().then((result) => {
-      this.setState({
-        comments: result,
       });
     });
   };
@@ -70,7 +64,7 @@ class BlogPost extends Component {
           });
         });
     } else {
-      axios.post('http://localhost:5000/posts', formBlogPost).then(() => {
+      API.postNewsBlog(formBlogPost).then(() => {
         this.getPostAPI();
         this.setState({
           formBlogPost: {
@@ -102,7 +96,7 @@ class BlogPost extends Component {
   };
 
   render() {
-    const { posts, formBlogPost, comments } = this.state;
+    const { posts, formBlogPost } = this.state;
     return (
       <>
         <p className="section-title">Page Blog Post</p>
@@ -134,11 +128,6 @@ class BlogPost extends Component {
             Save
           </button>
         </div>
-        {comments.map((comment) => (
-          <p>
-            {comment.name} - {comment.email}
-          </p>
-        ))}
         {posts.map((post) => (
           <Post
             key={post.id}

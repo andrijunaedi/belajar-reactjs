@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 import './BlogPost.css';
 import Post from '../../../component/Post/Post';
 import API from '../../../services';
@@ -49,20 +48,18 @@ class BlogPost extends Component {
   handleSave = () => {
     const { formBlogPost, isUpdate } = this.state;
     if (isUpdate) {
-      axios
-        .put(`http://localhost:5000/posts/${formBlogPost.id}`, formBlogPost)
-        .then(() => {
-          this.getPostAPI();
-          this.setState({
-            isUpdate: false,
-            formBlogPost: {
-              userId: 1,
-              id: 1,
-              title: '',
-              body: '',
-            },
-          });
+      API.putNewsBlog(formBlogPost.id, formBlogPost).then(() => {
+        this.getPostAPI();
+        this.setState({
+          isUpdate: false,
+          formBlogPost: {
+            userId: 1,
+            id: 1,
+            title: '',
+            body: '',
+          },
         });
+      });
     } else {
       API.postNewsBlog(formBlogPost).then(() => {
         this.getPostAPI();
@@ -86,9 +83,7 @@ class BlogPost extends Component {
   };
 
   handleRemove = (id) => {
-    axios
-      .delete(`http://localhost:5000/posts/${id}`)
-      .then(() => this.getPostAPI());
+    API.deleteNewsBlog(id).then(() => this.getPostAPI());
   };
 
   handleDetail = (id) => {

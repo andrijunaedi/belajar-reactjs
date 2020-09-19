@@ -8,6 +8,7 @@ import Product from '../pages/Product/Product';
 import LifeCycleComp from '../pages/LifeCycleComp/LifeCycleComp';
 import YoutubeCompPage from '../pages/YoutubeCompPage/YoutubeCompPage';
 import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
+import Hooks from '../pages/Hooks/Hooks';
 
 // Style
 import './Home.css';
@@ -22,12 +23,14 @@ class Home extends PureComponent {
             <Link to="/product">Product</Link>
             <Link to="/lifecycle">Life Cycle</Link>
             <Link to="/youtube">Youtube</Link>
+            <Link to="/hooks">Hooks</Link>
           </div>
           <Route path="/" exact component={BlogPost} />
           <Route path="/detail/:id" component={DetailPost} />
           <Route path="/product" component={Product} />
           <Route path="/lifecycle" component={LifeCycleComp} />
           <Route path="/youtube" component={YoutubeCompPage} />
+          <Route path="/hooks" component={Hooks} />
         </>
       </Router>
     );

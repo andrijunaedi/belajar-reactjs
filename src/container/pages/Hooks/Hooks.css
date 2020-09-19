@@ -1,0 +1,12 @@
+.p-hooks {
+  padding: 40px;
+}
+
+.p-hooks button {
+  padding: 12px 22px;
+  border-radius: 4px;
+  background: #3f51b6;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
